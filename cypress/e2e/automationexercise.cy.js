@@ -44,7 +44,7 @@ cy.get('[data-qa="continue-button"]').click()
 
  })
 
- it.only('Login Ususario incorrecto', () => {
+ it('Login Ususario incorrecto', () => {
     cy.visit('https://automationexercise.com/')
     cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
     cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
@@ -53,6 +53,20 @@ cy.get('[data-qa="continue-button"]').click()
     cy.get('[data-qa="login-password"]').type('258789')
     cy.get('[data-qa="login-button"]').click()
     cy.get('.login-form > form > p').should('be.visible')
+
+ })
+
+ it.only('Cerrar sesion usuario', () => {
+   cy.visit('https://automationexercise.com/')
+   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+   cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+   cy.get('.login-form > h2').should('be.visible')
+   cy.get('[data-qa="login-email"]').type('oemy19@gmail.com')
+   cy.get('[data-qa="login-password"]').type('Mimu2377')
+   cy.get('[data-qa="login-button"]').click()
+   cy.get(':nth-child(10) > a').contains('Oso')
+   cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+   cy.get('.nav > :nth-child(1) > a').click()
 
  })
 
