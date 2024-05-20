@@ -56,7 +56,7 @@ cy.get('[data-qa="continue-button"]').click()
 
  })
 
- it.only('Cerrar sesion usuario', () => {
+ it('Cerrar sesion usuario', () => {
    cy.visit('https://automationexercise.com/')
    cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
    cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
@@ -67,6 +67,60 @@ cy.get('[data-qa="continue-button"]').click()
    cy.get(':nth-child(10) > a').contains('Oso')
    cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
    cy.get('.nav > :nth-child(1) > a').click()
+
+ })
+
+ it('Registrar usuario con email existente', () => {
+   cy.visit('https://automationexercise.com/')
+   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+   cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
+   cy.get('.signup-form > h2').should('be.visible')
+   cy.get('[data-qa="signup-name"]').type('Oso')
+   cy.get('[data-qa="signup-email"]').type('oemy19@gmail.com')
+   cy.get('[data-qa="signup-button"]').click()
+   cy.get('.signup-form > form > p').contains('Email Address already exist!')
+
+ })
+
+ it('Formulario de contacto', () => {
+   cy.visit('https://automationexercise.com/')
+   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+   cy.get('.shop-menu > .nav > :nth-child(8) > a').click()
+   cy.get('div.contact-form > .title').should('be.visible')
+   cy.get('[data-qa="name"]').type('Oso')
+   cy.get('[data-qa="email"]').type('oemy19@gmail.com')
+   cy.get('[data-qa="subject"]').type('Bolso')
+   cy.get('[data-qa="message"]').type('Podrían confirmar stock de este modelo?')
+   cy.get(':nth-child(6) > .form-control').click()
+   cy.get('[data-qa="submit-button"]').click()
+   cy.get('.status').contains('Success! Your details have been submitted successfully.')
+   cy.get('span').click()
+   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+
+ })
+
+ it('Verificar página casos de prueba', () => {
+   cy.visit('https://automationexercise.com/')
+   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+   cy.get('.active > :nth-child(1) > .test_cases_list > .btn').click()
+   cy.get('body').should('be.visible')
+
+ })
+
+ it.only('Verificar todos los productos y página de detalles del producto', () => {
+   cy.visit('https://automationexercise.com/')
+   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+   cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
+   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+   cy.get('.features_items').should('be.visible')
+   cy.get(':nth-child(3) > .product-image-wrapper > .choose > .nav > li > a').click()
+   cy.get('.col-sm-9').should('be.visible')
+   cy.get('.product-information > h2').should('be.visible')
+   cy.get('.product-information > :nth-child(3)').should('be.visible')
+   cy.get(':nth-child(5) > span').should('be.visible')
+   cy.get('.product-information > :nth-child(6)').should('be.visible')
+   cy.get('.product-information > :nth-child(7)').should('be.visible')
+   cy.get('.product-information > :nth-child(7)').should('be.visible')
 
  })
 
