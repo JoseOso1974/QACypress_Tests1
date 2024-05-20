@@ -107,7 +107,7 @@ cy.get('[data-qa="continue-button"]').click()
 
  })
 
- it.only('Verificar todos los productos y página de detalles del producto', () => {
+ it('Verificar todos los productos y página de detalles del producto', () => {
    cy.visit('https://automationexercise.com/')
    cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
    cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
@@ -123,5 +123,27 @@ cy.get('[data-qa="continue-button"]').click()
    cy.get('.product-information > :nth-child(7)').should('be.visible')
 
  })
+
+ it('Producto de búqueda', () => {
+  cy.visit('https://automationexercise.com/')
+  cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+  cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
+  cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+  cy.get('#search_product').type('Blue Top')
+  cy.get('#submit_search > .fa').click()
+  cy.get('.title').should('be.visible')
+  cy.get('.productinfo > p').contains('Blue Top')
+
+})
+
+it.only('Verificar la suscripción en la página de inicio', () => {
+  cy.visit('https://automationexercise.com/')
+  cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+  cy.get('.single-widget > h2').should('be.visible')
+  cy.get('#susbscribe_email').type('oemy19@gmail.com')
+  cy.get('#subscribe > .fa').click()
+  cy.get('.alert-success').should('be.visible')
+
+})
 
 })
