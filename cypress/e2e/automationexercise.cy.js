@@ -136,7 +136,7 @@ cy.get('[data-qa="continue-button"]').click()
 
 })
 
-it.only('Verificar la suscripción en la página de inicio', () => {
+it('Verificar la suscripción en la página de inicio', () => {
   cy.visit('https://automationexercise.com/')
   cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
   cy.get('.single-widget > h2').should('be.visible')
@@ -146,4 +146,38 @@ it.only('Verificar la suscripción en la página de inicio', () => {
 
 })
 
+it('Verificar la suscripción pagina carrito', () => {
+  cy.visit('https://automationexercise.com/')
+  cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+  cy.get('.shop-menu > .nav > :nth-child(3) > a').click()
+  cy.scrollTo('bottom')
+  cy.get('h2').should('be.visible')
+  cy.get('#susbscribe_email').type('oemy19@gmail.com')
+  cy.get('#subscribe > .fa').click()
+  cy.get('.alert-success').should('be.visible')
+
 })
+
+it.only('Agregar productos al carrito', () => {
+  cy.visit('https://automationexercise.com/')
+  cy.get('section[style="height: auto !important;"] > .container > .row').should('be.visible')
+  cy.get('.shop-menu > .nav > :nth-child(2) > a').click()
+  cy.get(':nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn').click()
+  cy.get('.modal-footer > .btn').click()
+  cy.get(':nth-child(4) > .product-image-wrapper > .single-products > .productinfo > .btn').click()
+  cy.get('.modal-footer > .btn').click()
+  cy.get('.shop-menu > .nav > :nth-child(3) > a').click()
+  cy.get('#product-1').should('be.visible')
+  cy.get('#product-2').should('be.visible')
+  cy.get('#product-1 > .cart_price > p').should('be.visible')
+  cy.get('#product-2 > .cart_price > p').should('be.visible')
+  cy.get('#product-1 > .cart_total > .cart_total_price').should('be.visible')
+  cy.get('#product-2 > .cart_total > .cart_total_price').should('be.visible')
+  cy.get('#product-1 > .cart_quantity > .disabled').should('be.visible')
+  cy.get('#product-2 > .cart_quantity > .disabled').should('be.visible')
+
+
+})
+
+})
+
